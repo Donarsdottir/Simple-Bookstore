@@ -1,0 +1,61 @@
+<div class="container">
+  <h2>Your Cart</h2>
+
+  <div *ngIf="cart.length === 0">
+    <p>Your cart is empty.</p>
+  </div>
+
+  <div *ngIf="cart.length > 0">
+    <div *ngFor="let item of cart" class="cart-item">
+      <div class="row">
+        <div class="col-md-8">
+          <h5>{{ item.book.title }} by {{ item.book.author }}</h5>
+          <p>Price: \${{ item.book.price }}</p>
+        </div>
+        <div class="col-md-4 text-right">
+          <button (click)="removeFromCart(item.book)" class="btn btn-danger">
+            Delete
+          </button>
+          <button (click)="decreaseQuantity(item)" class="btn btn-warning">
+            -
+          </button>
+          <span>{{ item.quantity }}</span>
+          <button (click)="increaseQuantity(item)" class="btn btn-success">
+            +
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <hr />
+
+    <h4>Total: \${{ total }}</h4>
+  </div>
+
+  <hr />
+
+  <div *ngIf="cart.length > 0">
+    <h3>Checkout</h3>
+    <form [formGroup]="checkoutForm" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="name" class="form-label">Name</label>
+        <input id="name" formControlName="name" class="form-control" />
+      </div>
+      <div class="mb-3">
+        <label for="address" class="form-label">Address</label>
+        <input id="address" formControlName="address" class="form-control" />
+      </div>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="checkoutForm.invalid"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
+
+<div class="main">
+  <img src="/images/books.jpg" id="img" />
+</div>

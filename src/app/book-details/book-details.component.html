@@ -1,0 +1,13 @@
+<div *ngIf="book" class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <img [src]="book.image" class="img-fluid" alt="{{ book.title }}" />
+    </div>
+    <div class="col-md-6">
+      <h2>{{ book.title }}</h2>
+      <p><strong>Author:</strong> {{ book.author }}</p>
+      <p><strong>Price:</strong> \${{ book.price }}</p>
+      <p>{{ book.description }}</p>
+    </div>
+  </div>
+</div>
